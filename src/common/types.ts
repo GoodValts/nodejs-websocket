@@ -36,3 +36,9 @@ export interface ShipData {
   length: number;
   type: 'small' | 'medium' | 'large' | 'huge';
 }
+
+export interface WSResponse {
+  type: string;
+  data: object;
+  id: number;
+}

@@ -1,4 +1,5 @@
 import ws from 'ws';
+import { getActiveRooms } from '../../common/actions';
 
 const PORT = 3000;
 
@@ -14,7 +15,8 @@ wsServer.on('connection', (ws) => {
   ws.on('error', console.error);
 
   ws.on('message', () => {
-    console.log('message');
+    console.log('get msg');
+    wsServer.clients.forEach((cli) => cli.send(getActiveRooms()));
   });
 
   ws.on('close', () => {

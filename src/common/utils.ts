@@ -1,3 +1,5 @@
+import { WSResponse } from './types';
+
 export const generateId = () => {
   const chars = '123456789';
 
@@ -7,3 +9,6 @@ export const generateId = () => {
 
   return parseInt(arr.join(''));
 };
+
+export const createResponse = (response: WSResponse) =>
+  JSON.stringify({ ...response, data: JSON.stringify(response.data) });
