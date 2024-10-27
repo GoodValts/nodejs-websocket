@@ -2,7 +2,7 @@
   "name": "battleship",
   "description": "websocket-server",
   "version": "1.0.0",
-  "main": "src/http_server/index.ts",
+  "main": "src/index.ts",
   "keywords": [
     "battleship",
     "websocket"
@@ -21,14 +21,12 @@
   },
   "homepage": "https://github.com/GoodValts/nodejs-websocket#readme",
   "scripts": {
-    "start:dev": "nodemon src/http_server/index.ts",
-    "start:prod": "tsc && node src/http_server/index.ts",
-    "lint": "eslint --fix",
-    "fix": "npx prettier . --write"
+    "start:dev": "nodemon src/index.ts",
+    "start:prod": "tsc && node src/index.ts"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
-    "uuid": "^10.0.0"
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.6.0",
