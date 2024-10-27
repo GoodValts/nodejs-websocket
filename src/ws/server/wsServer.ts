@@ -1,5 +1,6 @@
 import ws from 'ws';
 import {
+  addToRoom,
   createRoom,
   getActiveRooms,
   getWinners,
@@ -42,6 +43,15 @@ function input(this: ws.WebSocket, ctx: string) {
       createRoom(this);
       sendAll(getActiveRooms());
       break;
+    case 'single_play':
+      createRoom(this); // temp
+      sendAll(getActiveRooms());
+      break;
+    case 'add_user_to_room':
+      addToRoom(this, JSON.parse(data));
+      sendAll(getActiveRooms());
+      break;
+
     default:
       break;
   }

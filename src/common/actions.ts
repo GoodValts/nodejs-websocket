@@ -1,8 +1,9 @@
 import ws from 'ws';
 import roomStorage from '../database/rooms';
 import userStorage from '../database/users';
-import { UserData } from './types';
+import { RoomData, UserData } from './types';
 import { createResponse } from './utils';
+import gameStorage from '../database/games';
 
 export const getActiveRooms = () => {
   const readyRooms = roomStorage
@@ -86,4 +87,38 @@ export const createRoom = (socket: ws.WebSocket) => {
   const user = userStorage.getUserBySocket(socket);
 
   if (user) return roomStorage.findUser(user) || roomStorage.addRoom(user);
+};
+
+export const addToRoom = (
+  socket: ws.WebSocket,
+  data: { indexRoom: number },
+) => {
+  const user = userStorage.getUserBySocket(socket);
+  if (user) {
+    const room = roomStorage.addUser(data.indexRoom, user) as RoomData;
+
+    if (room.users.length > 1) startGame(user, room);
+  }
+};
+
+export const startGame = (user: UserData, room: RoomData) => {
+  const response = {
+    id: 0,
+    type: 'create_game',
+    data: {
+      idGame: gameStorage.addGame(user, room).id,
+      idPlayer: 0,
+    },
+  };
+
+  room.users.forEach((player) => {
+    response.data.idPlayer = player.id as number;
+    player.socket?.send(createResponse(response));
+  });
+
+  roomStorage.getRooms().forEach((roomEl) => {
+    if (room.id !== roomEl.id)
+      if (roomEl.users.find((player) => player === user))
+        roomStorage.removeUser(roomEl.id, user);
+  });
 };
