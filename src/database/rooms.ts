@@ -1,16 +1,16 @@
 import { generateId } from '../common/utils';
 import { RoomData, UserData } from '../common/types';
 
-class RoomsStorage {
-  private static instance: RoomsStorage;
+class RoomStorage {
+  private static instance: RoomStorage;
 
   private rooms: RoomData[] = [];
 
-  public static getInstance(): RoomsStorage {
-    if (!RoomsStorage.instance) {
-      RoomsStorage.instance = new RoomsStorage();
+  public static getInstance(): RoomStorage {
+    if (!RoomStorage.instance) {
+      RoomStorage.instance = new RoomStorage();
     }
-    return RoomsStorage.instance;
+    return RoomStorage.instance;
   }
 
   public getRooms = () => this.rooms;
@@ -58,6 +58,6 @@ class RoomsStorage {
   };
 }
 
-const roomStorage = RoomsStorage.getInstance();
+const roomStorage = RoomStorage.getInstance();
 
 export default roomStorage;
