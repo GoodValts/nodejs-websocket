@@ -22,7 +22,7 @@ class UserStorage {
   public getUserByName = (name: string): UserData | undefined =>
     this.users.find((user) => user.name === name);
 
-  public getUserByID = (id: number): UserData | undefined =>
+  public getUserById = (id: number): UserData | undefined =>
     this.users.find((user) => user.id === id);
 
   public addUser = (

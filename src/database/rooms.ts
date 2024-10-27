@@ -20,7 +20,7 @@ class RoomStorage {
 
   public addRoom = (user: UserData) => {
     const room: RoomData = { id: generateId(), users: [user] };
-    this.rooms.push();
+    this.rooms.push(room);
 
     return room;
   };
