@@ -35,6 +35,7 @@ export interface ShipData {
   direction: boolean;
   length: number;
   type: 'small' | 'medium' | 'large' | 'huge';
+  hits?: number;
 }
 
 export interface WSResponse {
@@ -42,3 +43,19 @@ export interface WSResponse {
   data: object;
   id: number;
 }
+
+export type ShootData = {
+  gameId: number;
+  x?: number;
+  y?: number;
+  indexPlayer: number;
+};
+
+export type ShootResponse = {
+  position: {
+    x: number;
+    y: number;
+  };
+  currentPlayer: number;
+  status: 'miss' | 'killed' | 'shot';
+};

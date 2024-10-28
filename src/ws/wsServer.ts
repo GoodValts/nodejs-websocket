@@ -1,11 +1,13 @@
 import ws from 'ws';
 import {
+  addShips,
   addToRoom,
   createRoom,
   getActiveRooms,
   getWinners,
+  makeShoot,
   registerUser,
-} from '../../common/actions';
+} from '../common/actions';
 
 const PORT = 3000;
 
@@ -51,7 +53,15 @@ function input(this: ws.WebSocket, ctx: string) {
       addToRoom(this, JSON.parse(data));
       sendAll(getActiveRooms());
       break;
-
+    case 'add_ships':
+      addShips(JSON.parse(data));
+      break;
+    case 'attack':
+      makeShoot(this, JSON.parse(data));
+      break;
+    case 'randomAttack':
+      makeShoot(this, JSON.parse(data));
+      break;
     default:
       break;
   }
