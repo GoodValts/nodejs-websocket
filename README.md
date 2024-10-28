@@ -9,7 +9,7 @@ To start the application, please make sure you have [Git](https://git-scm.com) a
 1. Clone repository: `git clone https://github.com/GoodValts/nodejs-websocket.git`
 1. Navigate to the project directory: `cd nodejs-websocket`
 1. Switch to 'develop' branch: `git checkout develop`
-1. Open `./front/index.html` end enjoy!
+1. Open `./front/index.html`, find a friend (yep, only for extroverts), help him open his interface `./front/index.html`, start server, and enjoy!
 
 ## Commands:
 
